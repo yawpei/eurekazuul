@@ -1,0 +1,6 @@
+# src/main/resources/application-zone1.yml
+server.port: 8761
+eureka:
+  instance:
+    hostname: localhost
+    metadataMap.zone: zone1

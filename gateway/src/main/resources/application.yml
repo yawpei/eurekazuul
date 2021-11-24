@@ -1,0 +1,24 @@
+spring:
+  profiles.active: zone1
+  application.name: gateway
+
+eureka:
+  client:
+    prefer-same-zone-eureka: true
+    region: region-1
+    service-url:
+      zone1: http://localhost:8761/eureka/
+      zone2: http://127.0.0.1:8762/eureka/
+    availability-zones:
+      region-1: zone1,zone2
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${spring.cloud.client.hostname}}:${server.port}
+    lease-expiration-duration-in-seconds: 6
+    lease-renewal-interval-in-seconds: 3
+
+#开启重连机制
+zuul:
+  retryable: true

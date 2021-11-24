@@ -1,0 +1,6 @@
+# src/main/resources/application-zone2.yml
+server.port: 8762
+eureka:
+  instance:
+    hostname: 127.0.0.1
+    metadataMap.zone: zone2

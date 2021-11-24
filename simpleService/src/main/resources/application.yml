@@ -1,0 +1,19 @@
+eureka:
+  client:
+    prefer-same-zone-eureka: true
+    region: region-1
+    service-url:
+      zone1: http://localhost:8761/eureka/
+      zone2: http://127.0.0.1:8762/eureka/
+    availability-zones:
+      region-1: zone1,zone2
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 6
+    lease-renewal-interval-in-seconds: 3
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${spring.cloud.client.hostname}}}:${server.port}
+spring:
+  profiles.active: zone1
+  application.name: simple-service
